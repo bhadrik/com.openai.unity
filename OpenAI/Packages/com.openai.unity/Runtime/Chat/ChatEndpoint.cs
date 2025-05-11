@@ -33,6 +33,11 @@ namespace OpenAI.Chat
         {
             var payload = JsonConvert.SerializeObject(chatRequest, OpenAIClient.JsonSerializationOptions);
             var response = await Rest.PostAsync(GetUrl("/completions"), payload, new RestParameters(client.DefaultRequestHeaders), cancellationToken);
+            if (response.Code != 200)
+            {
+                Debug.Log($"<color=yellow>Request:</color>\n{payload}");
+                Debug.Log($"<color=yellow>Response:</color>\n{response.Body}");
+            }
             response.Validate(EnableDebug);
             return response.Deserialize<ChatResponse>(client);
         }
