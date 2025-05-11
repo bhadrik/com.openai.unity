@@ -94,6 +94,19 @@ namespace OpenAI.Chat
         }
 
         /// <summary>
+        /// Creates a new ToolCall message to insert into a chat conversation.
+        /// </summary>
+        /// <param name="toolCalls">ToolCalls used for message.</param>
+        /// <param name="content">Tool function response.</param>
+        [Preserve]
+        public Message(List<ToolCall> toolCalls, string content)
+        {
+            role = Role.Assistant;
+            ToolCalls = new List<ToolCall>(toolCalls);
+            Content = content;
+        }
+
+        /// <summary>
         /// Creates a new message to insert into a chat conversation.
         /// </summary>
         /// <param name="toolCallId">The tool_call_id to use for the message.</param>
