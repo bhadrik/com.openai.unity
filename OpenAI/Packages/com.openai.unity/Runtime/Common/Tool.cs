@@ -47,7 +47,7 @@ namespace OpenAI
 
         [Preserve]
         [JsonConstructor]
-        internal Tool(
+        public Tool(
             [JsonProperty("id")] string id,
             [JsonProperty("index")] int? index,
             [JsonProperty("type")] string type,
